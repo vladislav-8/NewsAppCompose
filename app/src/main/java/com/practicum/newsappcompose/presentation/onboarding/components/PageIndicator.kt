@@ -11,8 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import com.practicum.newsappcompose.presentation.Dimens.IndicatorSize
+import com.practicum.newsappcompose.presentation.common.NewsButton
 import com.practicum.newsappcompose.ui.theme.BlueGray
+import com.practicum.newsappcompose.ui.theme.NewsAppComposeTheme
 
 @Composable
 fun PageIndicator(
