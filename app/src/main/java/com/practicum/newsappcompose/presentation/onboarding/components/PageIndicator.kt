@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -12,8 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.practicum.newsappcompose.presentation.Dimens
 import com.practicum.newsappcompose.presentation.Dimens.IndicatorSize
-import com.practicum.newsappcompose.presentation.common.NewsButton
+import com.practicum.newsappcompose.presentation.onboarding.pages
 import com.practicum.newsappcompose.ui.theme.BlueGray
 import com.practicum.newsappcompose.ui.theme.NewsAppComposeTheme
 
@@ -35,5 +37,16 @@ fun PageIndicator(
             )
 
         }
+    }
+}
+
+@Preview
+@Composable
+fun PageIndicatorPreview() {
+    NewsAppComposeTheme {
+        PageIndicator(
+            modifier = Modifier.width(Dimens.PageIndicatorWidth),
+            pageSize = pages.size, selectedPage = 2
+        )
     }
 }
