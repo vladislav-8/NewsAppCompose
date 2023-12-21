@@ -10,11 +10,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.practicum.newsappcompose.domain.usecase.AppEntryUseCases
-import com.practicum.newsappcompose.presentation.onboarding.components.OnBoardingScreen
+import com.practicum.newsappcompose.presentation.onboarding.OnBoardingScreen
+import com.practicum.newsappcompose.presentation.onboarding.OnBoardingViewModel
 import com.practicum.newsappcompose.ui.theme.NewsAppComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +25,8 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
+
+    lateinit var useCases: AppEntryUseCases
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +36,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
 
         lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect {
+            useCases.readAppEntry().collect {
                 Log.d("TAG", it.toString())
             }
         }
@@ -40,7 +44,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             NewsAppComposeTheme {
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
-                    OnBoardingScreen()
+                    val viewModel: OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(
+                        event = {
+                            viewModel.onEvent(it)
+                        }
+                    )
                 }
             }
         }

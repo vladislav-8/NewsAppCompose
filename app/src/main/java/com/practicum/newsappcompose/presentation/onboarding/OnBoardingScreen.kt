@@ -1,4 +1,4 @@
-package com.practicum.newsappcompose.presentation.onboarding.components
+package com.practicum.newsappcompose.presentation.onboarding
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -19,18 +19,21 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.practicum.newsappcompose.presentation.Dimens.MediumPadding30
 import com.practicum.newsappcompose.presentation.Dimens.PageIndicatorWidth
 import com.practicum.newsappcompose.presentation.common.NewsButton
 import com.practicum.newsappcompose.presentation.common.NewsTextButton
-import com.practicum.newsappcompose.presentation.onboarding.pages
+import com.practicum.newsappcompose.presentation.onboarding.components.OnBoardingPage
+import com.practicum.newsappcompose.presentation.onboarding.components.PageIndicator
 import com.practicum.newsappcompose.ui.theme.NewsAppComposeTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -84,8 +87,8 @@ fun OnBoardingScreen() {
 
                 NewsButton(text = buttonState.value[1], onClick = {
                     scope.launch {
-                        if (pagerState.currentPage == 3) {
-                            //TODO: Navigate to homeScreen
+                        if (pagerState.currentPage == 2) {
+                            event(OnBoardingEvent.SaveAppEntry)
                         } else {
                             pagerState.animateScrollToPage(
                                 page = pagerState.currentPage + 1
@@ -103,6 +106,6 @@ fun OnBoardingScreen() {
 @Composable
 fun OnBoardingPreview() {
     NewsAppComposeTheme {
-        OnBoardingScreen()
+        //OnBoardingScreen()
     }
 }
