@@ -1,12 +1,11 @@
 package com.practicum.newsappcompose
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.practicum.newsappcompose.domain.usecase.AppEntryUseCases
+import com.practicum.newsappcompose.domain.usecase.app_entry.AppEntryUseCases
 import com.practicum.newsappcompose.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

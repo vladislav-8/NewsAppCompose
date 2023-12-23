@@ -1,4 +1,4 @@
-package com.practicum.newsappcompose.domain.usecase
+package com.practicum.newsappcompose.domain.usecase.app_entry
 
 import com.practicum.newsappcompose.domain.manager.LocalUserManager
 import kotlinx.coroutines.flow.Flow
