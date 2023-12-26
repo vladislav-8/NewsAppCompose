@@ -14,5 +14,7 @@ object Dimens {
 
     val ExtraSmallPadding4 = 4.dp
     val ExtraSmallPadding8 = 8.dp
+
     val SmallIconSize = 12.dp
+    val IconSize = 20.dp
 }
