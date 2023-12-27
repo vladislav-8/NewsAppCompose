@@ -11,6 +11,7 @@ import com.practicum.newsappcompose.domain.usecase.app_entry.ReadAppEntry
 import com.practicum.newsappcompose.domain.usecase.app_entry.SaveAppEntry
 import com.practicum.newsappcompose.domain.usecase.news.GetNews
 import com.practicum.newsappcompose.domain.usecase.news.NewsUseCases
+import com.practicum.newsappcompose.domain.usecase.news.SearchNews
 import com.practicum.newsappcompose.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -64,7 +65,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            searchNews = SearchNews(newsRepository)
         )
     }
 }
