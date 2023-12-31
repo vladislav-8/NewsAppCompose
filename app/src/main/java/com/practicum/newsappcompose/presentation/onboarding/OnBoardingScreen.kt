@@ -19,7 +19,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.practicum.newsappcompose.presentation.Dimens.MediumPadding30
 import com.practicum.newsappcompose.presentation.Dimens.PageIndicatorWidth
 import com.practicum.newsappcompose.presentation.common.NewsButton

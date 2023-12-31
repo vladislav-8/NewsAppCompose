@@ -21,7 +21,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.practicum.newsappcompose.presentation.Dimens.MediumPadding24
@@ -29,7 +28,6 @@ import com.practicum.newsappcompose.R
 import com.practicum.newsappcompose.presentation.common.ArticlesList
 import com.practicum.newsappcompose.presentation.common.SearchBar
 import com.practicum.newsappcompose.presentation.navgraph.Route
-import com.practicum.newsappcompose.ui.theme.NewsAppComposeTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
