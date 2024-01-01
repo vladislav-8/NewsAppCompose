@@ -1,7 +1,11 @@
 package com.practicum.newsappcompose.di
 
 import android.app.Application
+import androidx.room.Room
 import com.practicum.newsappcompose.data.impl.NewsRepositoryImpl
+import com.practicum.newsappcompose.data.local.NewsDao
+import com.practicum.newsappcompose.data.local.NewsDataBase
+import com.practicum.newsappcompose.data.local.NewsTypeConverter
 import com.practicum.newsappcompose.data.manager.LocalUserManagerImpl
 import com.practicum.newsappcompose.data.remote.api.NewsApi
 import com.practicum.newsappcompose.domain.manager.LocalUserManager
@@ -13,6 +17,7 @@ import com.practicum.newsappcompose.domain.usecase.news.GetNews
 import com.practicum.newsappcompose.domain.usecase.news.NewsUseCases
 import com.practicum.newsappcompose.domain.usecase.news.SearchNews
 import com.practicum.newsappcompose.util.Constants.BASE_URL
+import com.practicum.newsappcompose.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -69,4 +74,24 @@ object AppModule {
             searchNews = SearchNews(newsRepository)
         )
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDataBase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDataBase::class.java,
+            name = NEWS_DATABASE_NAME
+        ).addTypeConverter(NewsTypeConverter())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDataBase: NewsDataBase
+    ): NewsDao = newsDataBase.newsDao
 }
