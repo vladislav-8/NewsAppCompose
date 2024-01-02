@@ -17,6 +17,24 @@ import com.practicum.newsappcompose.presentation.Dimens.MediumPadding24
 @Composable
 fun ArticlesList(
     modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onClick: (Article) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(MediumPadding24),
+        contentPadding = PaddingValues(all = ExtraSmallPadding8)
+    ) {
+        items(count = articles.size) { index ->
+            val article = articles[index]
+            ArticleCard(article = article, onClick = { onClick(article) })
+        }
+    }
+}
+
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
     onClick: (Article) -> Unit
 ) {
@@ -24,7 +42,7 @@ fun ArticlesList(
     val handlePagingResult = handlePagingResult(articles = articles)
     if (handlePagingResult) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(MediumPadding24),
             contentPadding = PaddingValues(all = ExtraSmallPadding8)
         ) {

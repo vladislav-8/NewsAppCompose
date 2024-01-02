@@ -1,4 +1,4 @@
-package com.practicum.newsappcompose.domain.usecase.app_entry
+package com.practicum.newsappcompose.domain.usecases.app_entry
 
 import com.practicum.newsappcompose.domain.manager.LocalUserManager
 

@@ -1,4 +1,4 @@
-package com.practicum.newsappcompose.domain.usecase.news
+package com.practicum.newsappcompose.domain.usecases.news
 
 import androidx.paging.PagingData
 import com.practicum.newsappcompose.domain.models.Article

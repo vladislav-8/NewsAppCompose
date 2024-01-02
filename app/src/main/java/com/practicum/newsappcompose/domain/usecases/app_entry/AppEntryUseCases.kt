@@ -1,4 +1,4 @@
-package com.practicum.newsappcompose.domain.usecase.app_entry
+package com.practicum.newsappcompose.domain.usecases.app_entry
 
 data class AppEntryUseCases(
     val saveAppEntry: SaveAppEntry,

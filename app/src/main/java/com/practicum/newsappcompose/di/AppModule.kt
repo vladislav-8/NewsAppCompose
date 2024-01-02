@@ -10,12 +10,15 @@ import com.practicum.newsappcompose.data.manager.LocalUserManagerImpl
 import com.practicum.newsappcompose.data.remote.api.NewsApi
 import com.practicum.newsappcompose.domain.manager.LocalUserManager
 import com.practicum.newsappcompose.domain.repository.NewsRepository
-import com.practicum.newsappcompose.domain.usecase.app_entry.AppEntryUseCases
-import com.practicum.newsappcompose.domain.usecase.app_entry.ReadAppEntry
-import com.practicum.newsappcompose.domain.usecase.app_entry.SaveAppEntry
-import com.practicum.newsappcompose.domain.usecase.news.GetNews
-import com.practicum.newsappcompose.domain.usecase.news.NewsUseCases
-import com.practicum.newsappcompose.domain.usecase.news.SearchNews
+import com.practicum.newsappcompose.domain.usecases.app_entry.AppEntryUseCases
+import com.practicum.newsappcompose.domain.usecases.app_entry.ReadAppEntry
+import com.practicum.newsappcompose.domain.usecases.app_entry.SaveAppEntry
+import com.practicum.newsappcompose.domain.usecases.local.DeleteArticle
+import com.practicum.newsappcompose.domain.usecases.local.SelectArticles
+import com.practicum.newsappcompose.domain.usecases.local.UpsertArticle
+import com.practicum.newsappcompose.domain.usecases.news.GetNews
+import com.practicum.newsappcompose.domain.usecases.news.NewsUseCases
+import com.practicum.newsappcompose.domain.usecases.news.SearchNews
 import com.practicum.newsappcompose.util.Constants.BASE_URL
 import com.practicum.newsappcompose.util.Constants.NEWS_DATABASE_NAME
 import dagger.Module
@@ -67,11 +70,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
-            searchNews = SearchNews(newsRepository)
+            searchNews = SearchNews(newsRepository),
+            upsertArticle = UpsertArticle(newsDao),
+            deleteArticle = DeleteArticle(newsDao),
+            selectArticles = SelectArticles(newsDao)
         )
     }
 
