@@ -8,10 +8,9 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.practicum.newsappcompose.presentation.bookmark.BookmarkScreen
 import com.practicum.newsappcompose.presentation.bookmark.BookmarkViewModel
+import com.practicum.newsappcompose.presentation.news_navigator.NewsNavigator
 import com.practicum.newsappcompose.presentation.onboarding.OnBoardingScreen
 import com.practicum.newsappcompose.presentation.onboarding.OnBoardingViewModel
-import com.practicum.newsappcompose.presentation.search.SearchScreen
-import com.practicum.newsappcompose.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -44,11 +43,7 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ) {
-                val viewModel: BookmarkViewModel = hiltViewModel()
-                BookmarkScreen(
-                    state = viewModel.state.value,
-                    navigate = {}
-                )
+                NewsNavigator()
             }
         }
     }

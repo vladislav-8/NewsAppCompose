@@ -14,6 +14,7 @@ import com.practicum.newsappcompose.domain.usecases.app_entry.AppEntryUseCases
 import com.practicum.newsappcompose.domain.usecases.app_entry.ReadAppEntry
 import com.practicum.newsappcompose.domain.usecases.app_entry.SaveAppEntry
 import com.practicum.newsappcompose.domain.usecases.local.DeleteArticle
+import com.practicum.newsappcompose.domain.usecases.local.SelectArticle
 import com.practicum.newsappcompose.domain.usecases.local.SelectArticles
 import com.practicum.newsappcompose.domain.usecases.local.UpsertArticle
 import com.practicum.newsappcompose.domain.usecases.news.GetNews
@@ -62,23 +63,24 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(
-        newsApi: NewsApi
+        newsApi: NewsApi,
+        newsDao: NewsDao
     ): NewsRepository {
-        return NewsRepositoryImpl(newsApi)
+        return NewsRepositoryImpl(newsApi, newsDao)
     }
 
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository,
-        newsDao: NewsDao
+        newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
-            upsertArticle = UpsertArticle(newsDao),
-            deleteArticle = DeleteArticle(newsDao),
-            selectArticles = SelectArticles(newsDao)
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository),
+            selectArticle = SelectArticle(newsRepository)
         )
     }
 

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.practicum.newsappcompose.domain.models.Article
 
-@Database(entities = [Article::class], version = 1)
+@Database(entities = [Article::class], version = 2)
 @TypeConverters(NewsTypeConverter::class)
 abstract class NewsDataBase: RoomDatabase() {
 

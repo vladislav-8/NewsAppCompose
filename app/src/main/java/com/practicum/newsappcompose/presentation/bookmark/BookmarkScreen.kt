@@ -14,6 +14,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.practicum.newsappcompose.presentation.Dimens.MediumPadding24
 import com.practicum.newsappcompose.R
+import com.practicum.newsappcompose.domain.models.Article
 import com.practicum.newsappcompose.presentation.common.ArticlesList
 import com.practicum.newsappcompose.presentation.navgraph.Route
 
@@ -21,7 +22,7 @@ import com.practicum.newsappcompose.presentation.navgraph.Route
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
 
     Column(
@@ -40,7 +41,7 @@ fun BookmarkScreen(
 
         ArticlesList(
             articles = state.articles,
-            onClick = { navigate(Route.DetailsScreen.route) }
+            onClick = { navigateToDetails(it) }
         )
     }
 }

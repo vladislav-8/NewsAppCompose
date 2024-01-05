@@ -27,13 +27,13 @@ import com.practicum.newsappcompose.presentation.Dimens.MediumPadding24
 import com.practicum.newsappcompose.R
 import com.practicum.newsappcompose.presentation.common.ArticlesList
 import com.practicum.newsappcompose.presentation.common.SearchBar
-import com.practicum.newsappcompose.presentation.navgraph.Route
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
 ) {
 
     val titles by remember {
@@ -62,7 +62,7 @@ fun HomeScreen(
                 .height(30.dp)
                 .padding(horizontal = MediumPadding24)
         )
-        
+
         Spacer(modifier = Modifier.height(MediumPadding24))
 
         SearchBar(
@@ -71,11 +71,11 @@ fun HomeScreen(
             readOnly = true,
             onValueChange = {},
             onClick = {
-                      navigate(Route.SearchScreen.route)
+                navigateToSearch()
             },
             onSearch = {}
         )
-        
+
         Spacer(modifier = Modifier.height(MediumPadding24))
 
         Text(
@@ -87,14 +87,14 @@ fun HomeScreen(
             fontSize = 12.sp,
             color = colorResource(id = R.color.placeholder)
         )
-        
+
         Spacer(modifier = Modifier.height(MediumPadding24))
-        
+
         ArticlesList(
             modifier = Modifier.padding(horizontal = MediumPadding24),
             articles = articles,
             onClick = {
-                navigate(Route.DetailsScreen.route)
+                navigateToDetails(it)
             }
         )
     }
